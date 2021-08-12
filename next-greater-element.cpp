@@ -9,26 +9,28 @@ void printNGE(int a[], int n){
     vector<int> v;
     for(int i=n-1;i>=0;i--){
         if(s.empty()){
-        v.push_back(-1);
         s.push(a[i]);
-        }else{
-            if(a[i]<s.top()){
-            v.push_back(s.top());
-            s.push(a[i]);
-            }
+        continue;
+        }
+        while(s.empty()==false && s.top()>a[i]){
+            v.push_back(a[i]);
+            s.pop();
+        }
+        while(s.empty()==false){
+            v.push_back(-1);
+
         }
     }
+
     for (auto ir = v.rbegin(); ir != v.rend(); ++ir){
     cout << *ir << " ";
     }
-
-
 
 }
 
 int main(){
 
- int a[] = {11,13,21,3};
+ int a[] = {4,5,2,25};
  int n = sizeof(a)/sizeof(a[1]);
  printNGE(a,n);
 }
